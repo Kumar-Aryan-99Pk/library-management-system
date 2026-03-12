@@ -1,0 +1,52 @@
+:root{
+  --bg-main:#0f172a;
+  --bg-card:#1e293b;
+  --bg-input:#0b1324;
+
+  --primary:#2563eb;
+  --primary-hover:#1d4ed8;
+
+  --danger:#ef4444;
+  --danger-hover:#dc2626;
+
+  --text-main:#e2e8f0;
+  --text-muted:#94a3b8;
+
+  --border:#334155;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  background:var(--bg-main);
+  color:var(--text-main);
+  font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+}
+
+h1{
+  font-size:32px;
+  font-weight:600;
+  letter-spacing:-0.5px;
+}
+
+h2{
+  margin-bottom:10px;
+  font-weight:500;
+}
+
+input, select{
+  background:var(--bg-input);
+  border:1px solid var(--border);
+  color:var(--text-main);
+  padding:10px;
+  border-radius:6px;
+  margin:5px;
+  width:180px;
+}
+
+input::placeholder{
+  color:var(--text-muted);
+}
