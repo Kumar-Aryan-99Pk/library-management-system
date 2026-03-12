@@ -1,52 +1,208 @@
-:root{
-  --bg-main:#0f172a;
-  --bg-card:#1e293b;
-  --bg-input:#0b1324;
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300&family=DM+Mono:wght@400;500&display=swap');
 
-  --primary:#2563eb;
-  --primary-hover:#1d4ed8;
+:root {
+  --bg-main: #1c2b3a;
+  --bg-card: #243447;
+  --bg-card-hover: #2c3f56;
+  --bg-input: #1a2333;
+  --bg-overlay: rgba(28, 43, 58, 0.88);
 
-  --danger:#ef4444;
-  --danger-hover:#dc2626;
+  /* Blue — primary actions */
+  --primary: #4d7ef7;
+  --primary-hover: #3a6be0;
+  --primary-glow: rgba(77, 126, 247, 0.22);
+  --primary-subtle: rgba(77, 126, 247, 0.1);
 
-  --text-main:#e2e8f0;
-  --text-muted:#94a3b8;
+  /* Violet — section accents, badges */
+  --violet: #a78bfa;
+  --violet-hover: #8b6ef5;
+  --violet-glow: rgba(167, 139, 250, 0.2);
+  --violet-subtle: rgba(167, 139, 250, 0.08);
 
-  --border:#334155;
+  /* Amber — year, shelf, warnings */
+  --amber: #fbbf24;
+  --amber-glow: rgba(251, 191, 36, 0.18);
+  --amber-subtle: rgba(251, 191, 36, 0.08);
+
+  /* Teal — reference type, ISBN */
+  --teal: #2dd4bf;
+  --teal-glow: rgba(45, 212, 191, 0.18);
+  --teal-subtle: rgba(45, 212, 191, 0.08);
+
+  /* Rose — danger / delete */
+  --danger: #fb7185;
+  --danger-hover: #f43f5e;
+  --danger-glow: rgba(251, 113, 133, 0.18);
+  --danger-subtle: rgba(251, 113, 133, 0.08);
+
+  /* Emerald — success / circulating */
+  --success: #34d399;
+  --success-glow: rgba(52, 211, 153, 0.18);
+  --success-subtle: rgba(52, 211, 153, 0.08);
+
+  --text-main: #eef2f8;
+  --text-secondary: #b0bdd4;
+  --text-muted: #7a90b0;
+  --text-dim: #556680;
+
+  --border: rgba(255, 255, 255, 0.09);
+  --border-strong: rgba(255, 255, 255, 0.15);
+  --border-focus: rgba(77, 126, 247, 0.55);
+
+  --shadow-card: 0 1px 3px rgba(0,0,0,0.4), 0 8px 24px rgba(0,0,0,0.3);
+  --shadow-elevated: 0 4px 6px rgba(0,0,0,0.3), 0 20px 40px rgba(0,0,0,0.4);
+  --shadow-glow: 0 0 0 1px var(--border-focus), 0 0 24px var(--primary-glow);
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+
+  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-spring: 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-*{
-  box-sizing:border-box;
+/* ─── Reset & Base ─── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-body{
-  margin:0;
-  background:var(--bg-main);
-  color:var(--text-main);
-  font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+html {
+  scroll-behavior: smooth;
 }
 
-h1{
-  font-size:32px;
-  font-weight:600;
-  letter-spacing:-0.5px;
+body {
+  background: var(--bg-main);
+  color: var(--text-main);
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
-h2{
-  margin-bottom:10px;
-  font-weight:500;
+/* ─── Background texture ─── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 20% -10%, rgba(59,110,245,0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 100%, rgba(6,182,212,0.05) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
 }
 
-input, select{
-  background:var(--bg-input);
-  border:1px solid var(--border);
-  color:var(--text-main);
-  padding:10px;
-  border-radius:6px;
-  margin:5px;
-  width:180px;
+/* ─── Typography ─── */
+h1 {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.6px;
+  color: var(--text-main);
+  line-height: 1.2;
 }
 
-input::placeholder{
-  color:var(--text-muted);
+h2 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  letter-spacing: 0.02em;
+}
+
+/* ─── Inputs & Selects ─── */
+input, select {
+  background: var(--bg-input);
+  border: 1px solid var(--border-strong);
+  color: var(--text-main);
+  padding: 9px 12px;
+  border-radius: var(--radius-sm);
+  margin: 4px;
+  width: 175px;
+  font-family: inherit;
+  font-size: 13.5px;
+  transition:
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast),
+    background var(--transition-fast);
+  outline: none;
+  -webkit-appearance: none;
+}
+
+input::placeholder {
+  color: var(--text-muted);
+}
+
+input:hover, select:hover {
+  border-color: var(--border-focus);
+}
+
+input:focus, select:focus {
+  border-color: var(--primary);
+  box-shadow: var(--shadow-glow);
+  background: rgba(7, 12, 23, 0.95);
+}
+
+select {
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%235a6a84' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  padding-right: 28px;
+}
+
+select option {
+  background: #0e1625;
+}
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+/* ─── Keyframes ─── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.94); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes pulse-ring {
+  0%   { box-shadow: 0 0 0 0 var(--primary-glow); }
+  70%  { box-shadow: 0 0 0 8px transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes cardEntrance {
+  from { opacity: 0; transform: translateY(16px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
 }
